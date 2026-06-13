@@ -1,4 +1,7 @@
-@AGENTS.md
+# Next.js に関する注意
+
+このリポジトリの Next.js はトレーニングデータと異なる破壊的変更が含まれている。
+コードを書く前に `node_modules/next/dist/docs/` のガイドを読み、deprecation notice に従うこと。
 
 # プロジェクト概要
 
