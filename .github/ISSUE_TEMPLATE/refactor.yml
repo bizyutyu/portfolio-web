@@ -17,14 +17,6 @@ body:
     id: problem
     attributes:
       label: 現状の問題点
-      placeholder: "何が読みにくい・保守しにくい・冗長か書いてください"
-    validations:
-      required: true
-
-  - type: textarea
-    id: goal
-    attributes:
-      label: 改善後のイメージ
-      placeholder: "どんな状態にしたいかを書いてください"
+      placeholder: "何が読みにくい・保守しにくい・冗長かを書いてください"
     validations:
       required: true

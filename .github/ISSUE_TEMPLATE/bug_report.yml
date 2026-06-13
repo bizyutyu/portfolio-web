@@ -5,30 +5,6 @@ labels: ["bug"]
 assignees:
   - bizyutyu
 body:
-  - type: input
-    id: page
-    attributes:
-      label: 発生ページ / URL
-      placeholder: "例: https://example.com/works"
-    validations:
-      required: true
-
-  - type: textarea
-    id: expected
-    attributes:
-      label: 期待する動作
-      placeholder: "本来こうなるはず、という挙動を書いてください"
-    validations:
-      required: true
-
-  - type: textarea
-    id: actual
-    attributes:
-      label: 実際の動作
-      placeholder: "実際に起きていることを書いてください"
-    validations:
-      required: true
-
   - type: textarea
     id: steps
     attributes:
@@ -40,22 +16,10 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: browser
+  - type: textarea
+    id: actual
     attributes:
-      label: ブラウザ
-      multiple: true
-      options:
-        - Chrome
-        - Safari
-        - Firefox
-        - Edge
-        - その他
+      label: 実際の動作
+      placeholder: "実際に起きていることを書いてください"
     validations:
       required: true
-
-  - type: textarea
-    id: screenshot
-    attributes:
-      label: スクリーンショット・補足
-      description: 画像や追加情報があれば貼り付けてください（任意）

@@ -9,7 +9,7 @@ body:
     id: summary
     attributes:
       label: 概要
-      placeholder: "何をしたいか・何を改善したいかを一言で書いてください"
+      placeholder: "何をしたいか・何を改善したいかを書いてください"
     validations:
       required: true
 
@@ -17,20 +17,6 @@ body:
     id: motivation
     attributes:
       label: 背景・理由
-      placeholder: "なぜこの変更が必要か、どんな課題を解決するかを書いてください"
+      placeholder: "なぜこの変更が必要か書いてください"
     validations:
       required: true
-
-  - type: textarea
-    id: detail
-    attributes:
-      label: 実現したいこと
-      placeholder: "具体的な仕様・動作・見た目のイメージを書いてください"
-    validations:
-      required: true
-
-  - type: textarea
-    id: reference
-    attributes:
-      label: 参考・デザイン案
-      description: 参考サイト・画像・スケッチがあれば貼り付けてください（任意）
