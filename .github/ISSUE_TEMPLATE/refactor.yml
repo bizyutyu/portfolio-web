@@ -1,0 +1,30 @@
+name: リファクタリング
+description: 動作を変えずにコードの品質・構造を改善する
+title: "[Refactor] "
+labels: ["refactor"]
+assignees:
+  - bizyutyu
+body:
+  - type: input
+    id: target
+    attributes:
+      label: 対象ファイル・コンポーネント
+      placeholder: "例: src/components/Works.tsx"
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 現状の問題点
+      placeholder: "何が読みにくい・保守しにくい・冗長か書いてください"
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: 改善後のイメージ
+      placeholder: "どんな状態にしたいかを書いてください"
+    validations:
+      required: true
