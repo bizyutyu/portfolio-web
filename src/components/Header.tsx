@@ -19,32 +19,14 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <nav className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+      <div className="max-w-5xl mx-auto px-6 py-4">
         <a
           href="#hero"
           className="font-mono font-bold text-lg tracking-tight hover:text-blue-500 transition-colors"
         >
           bizyutyu
         </a>
-        <ul className="flex gap-6 text-sm font-medium">
-          <li>
-            <a
-              href="#works"
-              className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-            >
-              Works
-            </a>
-          </li>
-          <li>
-            <a
-              href="#about"
-              className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors"
-            >
-              About
-            </a>
-          </li>
-        </ul>
-      </nav>
+      </div>
     </header>
   );
 }
