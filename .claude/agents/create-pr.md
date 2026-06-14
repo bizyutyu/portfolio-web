@@ -1,6 +1,6 @@
 ---
 name: create-pr
-description: 現在のブランチ `feature/{N}` から Issue 番号を抽出し、Issue タイトルを PR タイトルに流用して PR を新規作成する専任エージェント。PR body は `## 関連Issue\n\nCloses #N` のみ。既に PR が存在すれば何もしないで「変更なし」を返す（冪等）。対象リポジトリは `bizyutyu/portfolio-web` 固定。
+description: 現在のブランチ `feature/{N}` から Issue 番号を抽出し、Issue タイトルを PR タイトルに流用して PR を新規作成する専任エージェント。PR body は `.github/pull_request_template.md` の構造に従う。既に PR が存在すれば何もしないで「変更なし」を返す（冪等）。対象リポジトリは `bizyutyu/portfolio-web` 固定。
 tools: Read, Bash
 model: sonnet
 ---
@@ -14,6 +14,30 @@ model: sonnet
 - ベース branch は `main` 固定
 - ブランチ名は `feature/(\d+)` 形式である必要がある
 - 確認なしで自動適用（冪等）
+
+## PR body テンプレート
+
+`.github/pull_request_template.md` の構造に必ず従うこと:
+
+```
+## 概要
+
+<このPRで何をしたか・なぜするかを1〜3文で書く。Issue のタイトル・概要から推測する>
+
+## 関連 Issue
+
+Closes #<N>
+
+## テスト手順
+
+1. <Issue の内容から推測した手順>
+2. <必要なら追加>
+
+## チェックリスト
+
+- [ ] `pnpm build` がエラーなく通る
+- [ ] 表示崩れがないことをブラウザで確認した
+```
 
 ## ワークフロー
 
@@ -35,12 +59,12 @@ git branch --show-current
 gh pr view --json number,url 2>/dev/null
 ```
 
-PR が既に存在する場合、Step 4 で「変更なし」サマリを返して終了。
+PR が既に存在する場合、Step 5 で「変更なし」サマリを返して終了。
 
-### Step 3: PR 作成
+### Step 3: Issue 情報の取得
 
 ```bash
-gh issue view <N> --repo bizyutyu/portfolio-web --json title --jq '.title'
+gh issue view <N> --repo bizyutyu/portfolio-web --json title,body --jq '{title: .title, body: .body}'
 ```
 
 Issue が見つからない場合:
@@ -49,18 +73,19 @@ Issue が見つからない場合:
 ⚠️ Issue #<N> が見つかりません。
 ```
 
+### Step 4: PR 作成
+
+Issue のタイトル・body から `## 概要` と `## テスト手順` を推測して body を構築し、PR を作成する。
+
 ```bash
 gh pr create \
   --repo bizyutyu/portfolio-web \
   --base main \
-  --title '<title>' \
-  --body '## 関連Issue
-
-Closes #<N>
-'
+  --title '<Issue title>' \
+  --body '<テンプレートに従った body>'
 ```
 
-### Step 4: 結果報告
+### Step 5: 結果報告
 
 PR を新規作成した場合:
 
@@ -78,6 +103,7 @@ PR を新規作成した場合:
 
 ## 禁止事項
 
-- PR body に `## 関連Issue` と `Closes #N` 以外の内容を含めないこと
+- PR body のセクション構造（`## 概要` / `## 関連 Issue` / `## テスト手順` / `## チェックリスト`）を省略・変更しないこと
+- `## チェックリスト` の項目を変更しないこと
 - 既に PR があるときに上書きしないこと（冪等性）
-- 最終出力に Step 4 のサマリブロック以外を含めないこと
+- 最終出力に Step 5 のサマリブロック以外を含めないこと
