@@ -15,30 +15,6 @@ model: sonnet
 - ブランチ名は `feature/(\d+)` 形式である必要がある
 - 確認なしで自動適用（冪等）
 
-## PR body テンプレート
-
-`.github/pull_request_template.md` の構造に必ず従うこと:
-
-```
-## 概要
-
-<このPRで何をしたか・なぜするかを1〜3文で書く。Issue のタイトル・概要から推測する>
-
-## 関連 Issue
-
-Closes #<N>
-
-## テスト手順
-
-1. <Issue の内容から推測した手順>
-2. <必要なら追加>
-
-## チェックリスト
-
-- [ ] `pnpm build` がエラーなく通る
-- [ ] 表示崩れがないことをブラウザで確認した
-```
-
 ## ワークフロー
 
 ### Step 1: ブランチ名検証
@@ -61,7 +37,9 @@ gh pr view --json number,url 2>/dev/null
 
 PR が既に存在する場合、Step 5 で「変更なし」サマリを返して終了。
 
-### Step 3: Issue 情報の取得
+### Step 3: テンプレートと Issue 情報の取得
+
+Read ツールで `.github/pull_request_template.md` を読み込む。
 
 ```bash
 gh issue view <N> --repo bizyutyu/portfolio-web --json title,body --jq '{title: .title, body: .body}'
@@ -75,7 +53,7 @@ Issue が見つからない場合:
 
 ### Step 4: PR 作成
 
-Issue のタイトル・body から `## 概要` と `## テスト手順` を推測して body を構築し、PR を作成する。
+テンプレートをベースに、HTML コメント（`<!-- ... -->`）を Issue のタイトル・body から推測した内容で置き換えて body を構築する。`Closes #` には Issue 番号を補完する。
 
 ```bash
 gh pr create \
@@ -83,7 +61,7 @@ gh pr create \
   --base main \
   --title '<Issue title>' \
   --assignee bizyutyu \
-  --body '<テンプレートに従った body>'
+  --body '<構築した body>'
 ```
 
 ### Step 5: 結果報告
@@ -104,7 +82,6 @@ PR を新規作成した場合:
 
 ## 禁止事項
 
-- PR body のセクション構造（`## 概要` / `## 関連 Issue` / `## テスト手順` / `## チェックリスト`）を省略・変更しないこと
-- `## チェックリスト` の項目を変更しないこと
+- テンプレートのセクション構造を省略・変更しないこと
 - 既に PR があるときに上書きしないこと（冪等性）
 - 最終出力に Step 5 のサマリブロック以外を含めないこと
