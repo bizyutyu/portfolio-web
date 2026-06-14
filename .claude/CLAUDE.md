@@ -28,6 +28,7 @@ main  ←  feature/{issue番号}
 
 | スキル | 用途 |
 |---|---|
+| `/create-issue` | Issue を新規作成し、ブランチ作成コマンドを提示 |
 | `/create-pr` | 現在のブランチの PR を新規作成（冪等） |
 | `/sync-pr` | PR body の `Closes #N` を維持・補完 |
 | `/sync-issue` | 紐付く Issue のチェックリスト更新 + changelog コメント投稿 |
