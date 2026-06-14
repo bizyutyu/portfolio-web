@@ -82,6 +82,7 @@ gh pr create \
   --repo bizyutyu/portfolio-web \
   --base main \
   --title '<Issue title>' \
+  --assignee bizyutyu \
   --body '<テンプレートに従った body>'
 ```
 
