@@ -22,7 +22,6 @@ main  ←  feature/{issue番号}
 - 作業は必ず `feature/{issue番号}` ブランチで行う
 - ブランチは必ずリモートの main から切る: `git fetch origin && git checkout -b feature/{番号} origin/main`
 - PR は必ず `main` へ向ける
-- PR タイトルは Conventional Commits 形式（`feat:` / `fix:` / `refactor:` / `style:` / `docs:` / `chore:`）
 - PR body に `Closes #{issue番号}` を含める
 
 ## カスタムスキル
