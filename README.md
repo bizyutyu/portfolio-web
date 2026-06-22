@@ -20,6 +20,29 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## 画像を追加する際の手順
+
+`public/images/` 配下に新しい画像を追加する場合、EXIF（位置情報・撮影機種・撮影日時等）やテキストメタデータがカメラ・編集ソフトによって埋め込まれている可能性があるため、公開前に必ず除去すること。
+
+1. `public/images/` または `public/images/posts/` に画像を配置する
+2. `scripts/strip-exif.mjs` の `targets` 配列に新しい画像のパスを追加する
+3. 依存パッケージをインストールする（初回のみ。pnpm のビルドスクリプト承認プロンプトが出る場合は承認する）
+
+   ```bash
+   pnpm install
+   ```
+
+4. EXIF除去スクリプトを実行する
+
+   ```bash
+   pnpm images:strip-exif
+   ```
+
+5. 処理後、画像の見た目・解像度に問題がないかブラウザで確認する
+6. `git diff --stat` でファイルサイズの変化を確認する
+
+このスクリプトはICCカラープロファイルのみ保持し、EXIF・Photoshop系テキストメタデータ（tEXt/zTXt/iTXt）を除去する。ピクセルデータが変化していないことをスクリプト内で自動検証し、不一致があれば処理を中断する。ロスレス再エンコードのトレードオフとして、ファイルサイズが元画像より増加することがある。
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
