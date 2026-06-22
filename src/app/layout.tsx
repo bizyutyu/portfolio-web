@@ -12,9 +12,30 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const title = "bizyutyu | Engineer Portfolio";
+const description =
+  "宮崎大学在学中。Haskell・形式手法・関数型プログラミングに関心を持つエンジニアのポートフォリオサイト。";
+
 export const metadata: Metadata = {
-  title: "bizyutyu",
-  description: "bizyutyu のポートフォリオサイト",
+  metadataBase: new URL(siteUrl),
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: "/",
+    siteName: "bizyutyu",
+    images: ["/images/profile.png"],
+    locale: "ja_JP",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: ["/images/profile.png"],
+  },
 };
 
 export default function RootLayout({

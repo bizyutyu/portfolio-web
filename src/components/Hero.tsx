@@ -19,7 +19,7 @@ export default function Hero() {
           bizyutyu
         </h1>
         <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-8 leading-relaxed">
-          {/* TODO: キャッチコピーを記入 */}
+          コンパイラに怒られていたい
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
           <a
