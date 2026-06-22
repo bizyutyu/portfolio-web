@@ -12,6 +12,15 @@ export default function Footer() {
           >
             GitHub
           </a>
+          {/* TODO: ドメインB（ハンドルサイト）のURL確定後に置き換える。現在はプレースホルダー (#30) */}
+          <a
+            href="https://example.com/"
+            target="_blank"
+            rel="nofollow noopener noreferrer"
+            className="hover:text-blue-500 transition-colors"
+          >
+            その他の活動
+          </a>
         </div>
       </div>
     </footer>
