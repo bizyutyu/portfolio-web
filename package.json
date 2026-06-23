@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "unset NODE_ENV; next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "images:strip-exif": "node scripts/strip-exif.mjs"
   },
   "dependencies": {
     "next": "16.2.9",
@@ -24,6 +25,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "postcss": ">=8.5.10",
     "typescript": "^5"
